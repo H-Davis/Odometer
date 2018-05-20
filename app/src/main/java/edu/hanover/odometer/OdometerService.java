@@ -44,12 +44,15 @@ public class OdometerService extends Service {
 
             @Override
             public void onProviderEnabled(String arg0) {}
-            
+
             @Override
             public void onStatusChanged(String arg0, int arg1, Bundle bundle) {}
         };
+        LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, listener);
+    }
 
-
-        }
+    public double getMiles(){
+        return this.distanceInMeters/1609.344;
     }
 }
